@@ -19,6 +19,9 @@
       pointsData.on("child_added", function (point) {
           points.push(point.val());
       });
+      pointsData.on("child_removed", function() {
+          points = [];
+      });
       
       canvas.mousePressed(drawPoint);
       canvas.mouseMoved(drawPointIfMousePressed);
@@ -41,5 +44,18 @@
           drawPoint();
       }
   }
+  
+$("#saveDrawing").on("click", saveDrawing);
+
+function saveDrawing() {
+    saveCanvas();
+}
+
+$("#clearDrawing").on("click", clearDrawing);
+
+function clearDrawing() {
+    pointsData.remove();
+    points = [];
+}
 
   
